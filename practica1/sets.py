@@ -24,3 +24,14 @@ class Matris:
                 result = False
         print(result)
 
+    @classmethod
+    def difference_simetric(clr, a, b): #diferencia simetrica entre 2 sets
+        result = Matris([x for x in a.list if x not in b.list] + [x for x in b.list if x not in a.list])
+        return result
+
+    @classmethod
+    def product_cart(clr, a, b): #producto cartesiano entre 2 sets
+        result = Matris([(x, y) for x in a.list for y in b.list])
+        return result
+
+
