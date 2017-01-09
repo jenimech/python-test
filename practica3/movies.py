@@ -13,8 +13,10 @@ for row in csv_f:
         movie_color = movie_color + 1
     if color == ' Black and White':
         movie_bw    = movie_bw + 1
-    if director_name not in directors:
-            directors.append(director_name)
+    if directors.has_key(director_name):
+        directors[director_name]['movies_count'] = directors[director_name]['movies_count'] + 1
+    else:
+        directors[director_name] = {'movies_count': 1}
 
 html_str = """
 <table border=1>
@@ -27,9 +29,13 @@ html_str = """
          <td>Cuantas peliculas a 'color' y 'blanco y negro' hay en la lista?</td>
          <td> {} Peliculas a color y {} en Blanco y Negro</td>
        </tr>
+       <tr>
+         <td>Cuantas películas produjeron cada director?</td>
+         <td>{}</td>
+       </tr>
      </indent>
 </table>
-""".format(movie_color, movie_bw)
+""".format(movie_color, movie_bw, directors)
 
 Html_file= open("movies-report.html","w")
 Html_file.write(html_str)
